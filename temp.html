@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 智能助教</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa; /* 稍微给点背景色，显得不那么空 */
+      font-family: sans-serif;
+    }
+    /* 页面中间可以随便写点字提示用户 */
+    .tip {
+      text-align: center;
+      margin-top: 100px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="tip">
+    <h2>欢迎使用 AI 智能助教</h2>
+    <p>请点击右下角的图标开始对话</p>
+  </div>
+
+  <!-- 引入 Coze 的官方 SDK -->
+  <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+  <script>
+    new CozeWebSDK.WebChatClient({
+      config: {
+        type: 'bot',
+        bot_id: '7589151007272140863',
+        isIframe: false,
+      },
+      auth: {
+        type: 'token',
+        // 这里填你的 Token。为了安全，你最好去 Coze 后台生成一个【受限 Token】，或者把有效期设置短一点。
+        token: 'pat_mvEw32r2LMkMeFkzvwy8i4KkNAEAw6kSolpNcJjyrOTv70zPxX7LxV6YMspekH66',
+        onRefreshToken: async () => 'pat_mvEw32r2LMkMeFkzvwy8i4KkNAEAw6kSolpNcJjyrOTv70zPxX7LxV6YMspekH66'
+      },
+      userInfo: {
+        id: 'user',
+        url: 'https://lf-coze-web-cdn.coze.cn/obj/eden-cn/lm-lgvj/ljhwZthlaukjlkulzlp/coze/coze-logo.png',
+        nickname: '学生',
+      },
+      ui: {
+        base: {
+          icon: 'https://lf-coze-web-cdn.coze.cn/obj/eden-cn/lm-lgvj/ljhwZthlaukjlkulzlp/coze/chatsdk-logo.png',
+          layout: 'pc',
+          lang: 'zh-CN', // 【修改】改成了中文
+          zIndex: 1000
+        },
+        header: {
+          isShow: true,
+          isNeedClose: true,
+        },
+        asstBtn: {
+          isNeed: true, // 【开启】右下角悬浮球
+        },
+        footer: {
+          isShow: false, // 【修改】去掉了底部的 "Powered by Coze"，显得更像你们自己的系统
+        },
+        chatBot: {
+          title: '口腔医学智能助手', // 【修改】改成你的智能体名字
+          uploadable: true,
+          width: 400,
+        },
+      },
+    });
+  </script>
+</body>
+</html>
